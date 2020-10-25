@@ -4,8 +4,8 @@ public class Task5 {
     public static void main(String[] args) {
         String s1 = getString();
         String s2 = getSecondString();
-        boolean areOddEqual = true;
-        boolean areEvenEqual = true;
+        boolean areOddEqual = isAreOddEqual();
+        boolean areEvenEqual = isAreEvenEqual();
         halfEqual(s1, s2, areOddEqual, areEvenEqual);
     }
 
@@ -17,6 +17,13 @@ public class Task5 {
         return "kbhdjf";
     }
 
+    private static boolean isAreOddEqual() {
+        return true;
+    }
+
+    private static boolean isAreEvenEqual() {
+        return true;
+    }
 
     private static void halfEqual(String s1, String s2, boolean areOddEqual, boolean areEvenEqual) {
         for (int i = 1; i <= s1.length() && i < s2.length(); i = i + 2) {
