@@ -6,21 +6,25 @@ public class Task6 {
         System.out.println(fib(whichFibonacciNumber));
     }
 
-    public static int fib(int whichFibonacciNumber) {
-        int a = 0, b = 1, c;
-        if (getInteger(whichFibonacciNumber, a) != null) return getInteger(whichFibonacciNumber, a);
-        return getB(whichFibonacciNumber, a, b);
+    private static int getA() {
+        return 0;
     }
 
-    private static Integer getInteger(int whichFibonacciNumber, int a) {
+    private static int getB() {
+        return 1;
+    }
+
+    private static void getC() {
+        int c;
+    }
+
+    public static int fib(int whichFibonacciNumber) {
+        int a = getA();
+        int b = getB();
+        int c;
         if (whichFibonacciNumber == 0) {
             return a;
         }
-        return null;
-    }
-
-    private static int getB(int whichFibonacciNumber, int a, int b) {
-        int c;
         for (int i = 2; i <= whichFibonacciNumber; i++) {
             c = a + b;
             a = b;
