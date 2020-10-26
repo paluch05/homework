@@ -4,7 +4,8 @@ public class Task2 {
     public static void main(String[] args) {
         int a = getA();
         int b = getB();
-        isAdding(a, b);
+        isAdding(getA(), getB());
+        isSubtracting(getA(), getB());
     }
 
     private static int getA() {
@@ -16,11 +17,13 @@ public class Task2 {
     }
 
     private static void isAdding(int a, int b) {
-        boolean isAdding = true;
-
-        if (isAdding) {
+        if (true) {
             System.out.println(a + " plus " + b + " is " + (a + b));
-        } else {
+        }
+    }
+
+    private static void isSubtracting(int a, int b) {
+        if (false) {
             System.out.println(a + " minus " + b + " is " + (a - b));
         }
     }
