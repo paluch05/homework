@@ -10,11 +10,6 @@ public class Bodyguard {
     }
 
     private static boolean check(String password, int iq) {
-        boolean isEqual = PasswordChecker.checkPassword(password);
-        if (isEqual && iq > 130) {
-            return true;
-        } else {
-            return false;
-        }
+        return PasswordChecker.checkPassword(password) && iq > 130;
     }
 }
