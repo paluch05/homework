@@ -2,9 +2,8 @@ package task8;
 
 public class PasswordChecker {
 
-    public static void checkPassword() {
-        String password = "PawianyWchodzaNaSciany";
+    public static boolean checkPassword(String password) {
         boolean cond1 = password.equals("PawianyWchodzaNaSciany");
-        System.out.println(cond1);
+        return cond1;
     }
 }

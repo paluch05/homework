@@ -3,15 +3,18 @@ package task8;
 public class Bodyguard {
     public static void main(String[] args) {
         String password = "PawianyWchodzaNaSciany";
-        int iq = 140;
-        check(password, iq);
-        PasswordChecker.checkPassword();
+        int iq = 160;
+        if (check(password, iq)) {
+            System.out.println("Zapraszam");
+        }
     }
 
-    private static void check(String password, int iq) {
-        if ((password.equals("PawianyWchodzaNaSciany")) && iq > 130) {
+    private static boolean check(String password, int iq) {
+        boolean isEqual = PasswordChecker.checkPassword(password);
+        if (isEqual && iq > 130) {
+            return true;
         } else {
-            System.out.println("Wypad!");
+            return false;
         }
     }
 }
