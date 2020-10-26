@@ -2,12 +2,18 @@ package pl.orzechsoft.paluch.tasks;
 
 public class Task6 {
     public static void main(String args[]) {
-        int whichFibonacciNumber = 5;
-        System.out.println(fib(whichFibonacciNumber));
+        int whichFibonacciNumber = getWhichFibonacciNumber();
+        int fibonacciNumber = getFibonacciNumber(whichFibonacciNumber);
+        printResult(fibonacciNumber);
     }
 
-    public static int fib(int whichFibonacciNumber) {
-        int a = 0, b = 1, c;
+    private static int getWhichFibonacciNumber() {
+        return 5;
+    }
+
+    private static int getFibonacciNumber(int whichFibonacciNumber) {
+        int a = 0, b = 1;
+        int c;
         if (whichFibonacciNumber == 0) {
             return a;
         }
@@ -17,5 +23,10 @@ public class Task6 {
             b = c;
         }
         return b;
+    }
+
+    private static void printResult(int number) {
+
+        System.out.println(number);
     }
 }
