@@ -1,28 +1,41 @@
 package pl.orzechsoft.paluch.tasks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Task9 {
 
     public static void main(String[] args) {
+        haveSameElements(getArray(), getList());
+        printResult(true);
+    }
 
+    private static String[] getArray() {
+        String[] myArray = new String[3];
+        myArray[0] = "a";
+        myArray[1] = "b";
+        myArray[2] = "c";
+        return myArray;
+    }
 
-        String[] strArray = new String[10];
+    private static List<String> getList() {
+        List<String> myList = new ArrayList<>();
+        myList.add("a");
+        myList.add("b");
+        return myList;
+    }
 
-        strArray[0] = "this is element 0";
-        strArray[1] = "this is element 1";
-        strArray[2] = null;
-        strArray[3] = strArray[1] + strArray[2];
-        strArray[4] = "this is element 1";
-
-
-        System.out.println(strArray[1]);
-
-        for (int i = 0; i < strArray.length; i++) {
-            System.out.println(strArray[i]);
+    private static boolean haveSameElements(String[] myArray, List<String> myList) {
+        boolean areEqual = true;
+        for (int i = 0; i < myArray.length && i < myList.size(); i++) {
+            if (!myArray[i].equals(myList.get(i))) {
+                return false;
+            }
         }
-        private static String getMyString ( int i){
-            return "This is element number " + i;
-        }
+        return true;
+    }
 
-
+    private static void printResult(boolean areEqual) {
+        System.out.println(areEqual);
     }
 }
