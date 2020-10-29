@@ -3,10 +3,7 @@ package pl.orzechsoft.paluch.tasks;
 public class Task10 {
 
     public static void main(String[] args) {
-        int initialNumber = 3;
-        int size = 20;
-        int[] array = getArray(initialNumber, size);
-        printArray(array);
+        printArray(getArray(3, 20));
     }
 
     private static int[] getArray(int initialNumber, int size) {
