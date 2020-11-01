@@ -6,7 +6,6 @@ public class PeselLength {
 
     public static boolean checkPESEL(String pesel) {
         int[] weigth = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
-
         if (pesel.length() != 11) return false;
         int sum = 0;
         for (int i = 0; i < 10; i++)
