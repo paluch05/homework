@@ -8,7 +8,7 @@ public class Task11 {
 
     private static String pesel;
     private static final List<String> BLACK_LIST = List.of("Zakazany przedmiot 1", "Glock", "Marijuana");
-    private static int age = 18;
+    private static final int AGE = 18;
 
 
     public static void main(String[] args) {
@@ -34,18 +34,18 @@ public class Task11 {
         return sum == control;
     }
 
-    private static String mature(String pesel, int age) {
-        age = 18;
+    private static String mature(String pesel, int AGE) {
+        AGE = 18;
         int range = Integer.parseInt(pesel.substring(2, 3));
         int year = Integer.parseInt(pesel.substring(0, 2));
         Calendar cal = Calendar.getInstance();
         int currentYear = Integer.parseInt(String.valueOf(cal.get(Calendar.YEAR)).substring(2, 4));
         String matureOrNot = "";
         if (range != 8 && range != 0 && range != 1) {
-            if ((range == 2 || range == 4 || range == 6) && (currentYear - year) >= age) {
+            if ((range == 2 || range == 4 || range == 6) && (currentYear - year) >= AGE) {
                 matureOrNot = "What do you want to sell?";
             } else {
-                int difference = age - (currentYear - year);
+                int difference = AGE - (currentYear - year);
                 matureOrNot = "Sorry, come back in " + difference + " years!";
             }
         } else {
