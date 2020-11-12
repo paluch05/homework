@@ -2,18 +2,15 @@ package pl.orzechsoft.paluch.tasks;
 
 public class Task6 {
     public static void main(String args[]) {
-        int whichFibonacciNumber = getWhichFibonacciNumber();
-        int fibonacciNumber = getFibonacciNumber(whichFibonacciNumber);
-        printResult(fibonacciNumber);
+        int whichFibonacciNumber = 5;
+        System.out.println(fib(whichFibonacciNumber));
     }
 
-    private static int getWhichFibonacciNumber() {
-        return 5;
-    }
-
-    private static int getFibonacciNumber(int whichFibonacciNumber) {
-        int a = 0, b = 1;
-        int c;
+    public static int fib(int whichFibonacciNumber) {
+        if (whichFibonacciNumber < 0) {
+            throw new IllegalArgumentException("WhichFibonacciNumber can't be negative");
+        }
+        int a = 0, b = 1, c;
         if (whichFibonacciNumber == 0) {
             return a;
         }
@@ -23,10 +20,5 @@ public class Task6 {
             b = c;
         }
         return b;
-    }
-
-    private static void printResult(int number) {
-
-        System.out.println(number);
     }
 }
