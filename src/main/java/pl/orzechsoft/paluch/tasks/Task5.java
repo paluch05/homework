@@ -2,19 +2,14 @@ package pl.orzechsoft.paluch.tasks;
 
 public class Task5 {
     public static void main(String[] args) {
-        boolean halfEqual = halfEqual(getString(), getSecondString());
+        boolean halfEqual = halfEqual("abcdef", "kbhdjf");
         print(halfEqual);
     }
 
-    private static String getString() {
-        return "abcdef";
-    }
-
-    private static String getSecondString() {
-        return "kbhdjf";
-    }
-
-    private static boolean halfEqual(String s1, String s2) {
+    public static boolean halfEqual(String s1, String s2) {
+        if (s1 == null || s2 == null) {
+            throw new IllegalArgumentException("Any of Strings can't be null");
+        }
         boolean areEvenEqual = true;
         boolean areOddEqual = true;
         for (int i = 1; i <= s1.length() && i < s2.length(); i = i + 2) {
@@ -24,7 +19,7 @@ public class Task5 {
         return areEvenEqual || areOddEqual;
     }
 
-    private static void print(boolean result) {
+    public static void print(boolean result) {
         if (result) {
             System.out.println("Half are equal!");
         }
