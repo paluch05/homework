@@ -11,8 +11,8 @@ public class Task21 {
         Random random = new Random();
         List<Person> persons = names.stream().map(name -> new Person(name, random.nextInt(23 - 15) + 15)).collect(Collectors.toList());
         Set<Person> adults = persons.stream().filter(person -> (person.getAge() >= 18)).collect(Collectors.toSet());
-        adults.forEach(person -> {
-                    System.out.println(person.getName() + " is " + person.getAge() + " years old.");
+        adults.forEach(adult -> {
+                    System.out.println(adult.getName() + " is " + adult.getAge() + " years old.");
                 });
     }
 }
