@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CarnegieHall {
-    List<Client> subscribedClients = new LinkedList<>();
 
+    List<Client> subscribedClients = new LinkedList<>();
     private boolean isTicketAvailable = false;
 
     public void subscribeTickets(Client client){

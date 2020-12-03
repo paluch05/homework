@@ -13,5 +13,4 @@ public class Client {
     public void notifyOfTicketsAvailability(){
         System.out.println("Finally I can go to the concert! My name is " + name);
     }
-
 }
