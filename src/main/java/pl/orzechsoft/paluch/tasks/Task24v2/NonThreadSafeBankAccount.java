@@ -31,7 +31,7 @@ public class NonThreadSafeBankAccount implements BankAccount{
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount cannot be equal to or lower than 0");
         }
-        System.out.println(String.format("[DEPOSIT] (%.2f$)", amount ));
+        System.out.printf("[DEPOSIT] (%.2f$)%n", amount );
         addOperation(new Operation(amount, System.currentTimeMillis(), name));
     }
     @Override
@@ -39,7 +39,7 @@ public class NonThreadSafeBankAccount implements BankAccount{
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount cannot be equal to or lower than 0");
         }
-        System.out.println(String.format("[WITHDRAW] (%.2f$)", amount ));
+        System.out.printf("[WITHDRAW] (%.2f$)%n", amount );
         addOperation(new Operation(-1 * amount, System.currentTimeMillis(), name));
     }
 

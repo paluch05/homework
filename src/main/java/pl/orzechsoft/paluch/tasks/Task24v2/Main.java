@@ -18,7 +18,6 @@ public class Main {
                     for (int i = 0; i < MAX_OPERATIONS; i++) {
                         bankAccount.withdraw(new Random().nextDouble() * 1000, "Withdrawer withdrawing");
                         try {
-//                                System.out.println("[WITHDRAWER] Waiting for next iteration...");
                             Thread.sleep(new Random().nextInt(1000));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -26,13 +25,11 @@ public class Main {
                     }
                 }, "withdrawer");
 
-
         Thread depositer = new Thread(
                 () -> {
                     for (int i = 0; i < MAX_OPERATIONS; i++) {
                         bankAccount.deposit(new Random().nextDouble() * 1000, "Depositer depositing");
                         try {
-//                                System.out.println("[DEPOSITER] Waiting for next iteration...");
                             Thread.sleep(new Random().nextInt(1000));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -54,7 +51,6 @@ public class Main {
                         }
 
                         try {
-//                                System.out.println("[CHECKER] Waiting for next iteration...");
                             Thread.sleep(new Random().nextInt(1000));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -80,15 +76,15 @@ public class Main {
 
         System.out.println("\n~~~~~");
         System.out.println("Summary:");
-        System.out.println(String.format("|> Current balance: (%.2f$)", bankAccount.getBalance()));
+        System.out.printf("|> Current balance: (%.2f$)%n", bankAccount.getBalance());
         System.out.println(String.format("|> Total cash deposited: (%.2f$)", bankAccount.getTotalDeposited()));
         System.out.println(String.format("|> Total cash withdrawn: (%.2f$)", bankAccount.getTotalWithdrawn()));
-        System.out.println(String.format(
-                "|> (%.2f$) = %.2f$ - %.2f$",
+        System.out.printf(
+                "|> (%.2f$) = %.2f$ - %.2f$%n",
                 balance,
                 deposited,
                 withdrawn
-        ));
+        );
         System.out.println("\n~~~~~");
     }
 }
