@@ -15,11 +15,14 @@
             <version>4.5.13</version>
         </dependency>
         <dependency>
+ Task16
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.22</version>
         </dependency>
         <dependency>
+
+ main
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.11.3</version>
@@ -31,11 +34,14 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+ Task16
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20201115</version>
         </dependency>
         <dependency>
+
+ main
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>1.18.16</version>
