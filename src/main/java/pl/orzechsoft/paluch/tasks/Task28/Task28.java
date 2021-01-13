@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -26,14 +27,14 @@ public class Task28 {
 
     private static class MyHttpHandler implements HttpHandler {
 
-        Database<Phone> database = new MyDatabase();
+        Database<Phone> database = new MySQLDatabase("jdbc:mysql://localhost/orzech_task_schema?user=root&password=123&serverTimezone=UTC");
         ObjectMapper objectMapper = new ObjectMapper();
 
         @Override
         public void handle(HttpExchange httpExchange) throws IOException {
 
             String requestMethod = httpExchange.getRequestMethod();
-            switch(requestMethod){
+            switch (requestMethod) {
 
                 case "GET":
                     try {
@@ -114,7 +115,8 @@ public class Task28 {
             }
             handleResponse(httpExchange, null, 201);
         }
-        private void handlePut (HttpExchange httpExchange) throws IOException {
+
+        private void handlePut(HttpExchange httpExchange) throws IOException {
 
             Phone phone;
             try {
@@ -124,7 +126,7 @@ public class Task28 {
                 return;
             }
 
-            if(!database.contains(phone.getId())){
+            if (!database.contains(phone.getId())) {
                 handleResponse(httpExchange, getJsonForException("Phone with id " + phone.getId() + " doesn't exist!"), 404);
             }
 
@@ -137,19 +139,19 @@ public class Task28 {
             handleResponse(httpExchange, null, 200);
         }
 
-        private void handleDelete (HttpExchange httpExchange) throws IOException, MyDatabaseException {
+        private void handleDelete(HttpExchange httpExchange) throws IOException, MyDatabaseException {
 
             String query = httpExchange.getRequestURI().getQuery();
             String[] splittedQuery = query.split("&");
 
-            if(splittedQuery.length > 1) {
+            if (splittedQuery.length > 1) {
                 handleResponse(httpExchange, getJsonForException("Expected one query, but got: " + splittedQuery.length), 500);
             }
 
             String phoneId = splittedQuery[0].split("=")[1];
 
             boolean phoneExists = database.contains(phoneId);
-            if(!phoneExists){
+            if (!phoneExists) {
                 handleResponse(httpExchange, getJsonForException("Phone with id " + phoneId + " doesn't exist!"), 404);
             } else {
                 database.deleteById(phoneId);

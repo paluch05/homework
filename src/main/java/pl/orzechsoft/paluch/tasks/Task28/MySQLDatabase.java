@@ -40,8 +40,10 @@ public class MySQLDatabase implements Database<Phone> {
     @Override
     public void update(Phone obj) throws MyDatabaseException {
         try (Connection connect = DriverManager.getConnection(connectionString)) {
-            PreparedStatement statement = connect.prepareStatement("UPDATE phones SET storage = 64 where id= ?");
-            statement.setString(1, "4");
+            PreparedStatement statement = connect.prepareStatement("UPDATE phones SET storage = ?, model = ? where id= ?");
+            statement.setInt(3, obj.getStorage());
+            statement.setString(2, obj.getModel());
+            statement.setString(1, obj.getId());
             int howManyObjAffected = statement.executeUpdate();
             if (howManyObjAffected == 0) {
                 throw new MyDatabaseException("Obj wasn't updated");
@@ -55,13 +57,14 @@ public class MySQLDatabase implements Database<Phone> {
     public void deleteById(String id) throws MyDatabaseException {
         try (Connection connect = DriverManager.getConnection(connectionString)) {
             PreparedStatement statement = connect.prepareStatement("DELETE from phones where id = ?");
-            statement.setString(1, "5");
+            statement.setString(1, id);
+
             int howManyObjAffected = statement.executeUpdate();
             if (howManyObjAffected == 0) {
-                throw new MyDatabaseException("Obj wasn't deleted from db");
+                throw new MyDatabaseException("Obj with this ID doesn't exist");
             }
         } catch (SQLException e) {
-            throw new MyDatabaseException("Obj with this ID doesn't exist");
+            throw new MyDatabaseException("Obj wasn't deleted from db");
         }
     }
 
@@ -69,7 +72,7 @@ public class MySQLDatabase implements Database<Phone> {
     public void add(Phone obj) throws MyDatabaseException {
         try (Connection connect = DriverManager.getConnection(connectionString)) {
             PreparedStatement statement = connect.prepareStatement("INSERT into phones (id, model, storage) VALUES (?, ?, ?)");
-            statement.setString(1,obj.getId());
+            statement.setString(1, obj.getId());
             statement.setString(2, obj.getModel());
             statement.setInt(3, obj.getStorage());
             int howManyObjAffected = statement.executeUpdate();
@@ -77,7 +80,7 @@ public class MySQLDatabase implements Database<Phone> {
                 throw new MyDatabaseException("Obj wasn't inserted into db");
             }
         } catch (SQLException e) {
-            throw new MyDatabaseException("Unnable to connect to database", e);
+            throw new MyDatabaseException("Unable to connect to database", e);
         }
     }
 
@@ -96,4 +99,5 @@ public class MySQLDatabase implements Database<Phone> {
     public boolean contains(String id) {
         return false;
     }
+
 }
