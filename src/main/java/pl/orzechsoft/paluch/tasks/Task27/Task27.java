@@ -25,32 +25,25 @@ public class Task27 {
     }
 
     private static class MyHttpHandler implements HttpHandler {
-
         Database<Motorcycle> database = new HashMapDatabase();
         ObjectMapper objectMapper = new ObjectMapper();
 
         @Override
         public void handle(HttpExchange httpExchange) throws IOException {
-
             String requestMethod = httpExchange.getRequestMethod();
-            switch(requestMethod){
-
+            switch (requestMethod) {
                 case "GET":
                     handleGet(httpExchange);
                     break;
-
                 case "POST":
                     handlePost(httpExchange);
                     break;
-
                 case "DELETE":
                     handleDelete(httpExchange);
                     break;
-
                 case "PUT":
                     handlePut(httpExchange);
                     break;
-
                 default:
                     throw new IOException("Method unsupported");
             }
@@ -106,8 +99,8 @@ public class Task27 {
             }
             handleResponse(httpExchange, null, 201);
         }
-        private void handlePut (HttpExchange httpExchange) throws IOException {
 
+        private void handlePut(HttpExchange httpExchange) throws IOException {
             Motorcycle motorcycle;
             try {
                 motorcycle = objectMapper.readValue(httpExchange.getRequestBody(), Motorcycle.class);
@@ -116,7 +109,7 @@ public class Task27 {
                 return;
             }
 
-            if(!database.contains(motorcycle.getId())){
+            if (!database.contains(motorcycle.getId())) {
                 handleResponse(httpExchange, getJsonForException("Motorcycle with id " + motorcycle.getId() + " doesn't exist!"), 404);
             }
 
@@ -129,19 +122,18 @@ public class Task27 {
             handleResponse(httpExchange, null, 200);
         }
 
-        private void handleDelete (HttpExchange httpExchange) throws IOException {
-
+        private void handleDelete(HttpExchange httpExchange) throws IOException {
             String query = httpExchange.getRequestURI().getQuery();
             String[] splittedQuery = query.split("&");
 
-            if(splittedQuery.length > 1) {
+            if (splittedQuery.length > 1) {
                 handleResponse(httpExchange, getJsonForException("Expected one query, but got: " + splittedQuery.length), 500);
             }
 
             String motorId = splittedQuery[0].split("=")[1];
 
             boolean motorExists = database.contains(motorId);
-            if(!motorExists){
+            if (!motorExists) {
                 handleResponse(httpExchange, getJsonForException("Motorcycle with id " + motorId + " doesn't exist!"), 404);
             } else {
                 database.deleteById(motorId);
