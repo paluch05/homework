@@ -1,0 +1,1 @@
+Racing simulator. Whole simulation was written by my mentor, my job was to implement 'abstract void prepareForRace(List<Integer> track)' and select the appropriate car parameters for the exemplary routes.
